@@ -1,0 +1,23 @@
+2022-08-12T09:37:48.433Z pw:protocol SEND ► {"id":1,"method":"Browser.getVersion"}
+2022-08-12T09:37:48.436Z pw:protocol ◀ RECV {"id":1,"result":{"protocolVersion":"1.3","product":"Chrome/104.0.5112.81","revision":"@3abec05b5541eeced3d11b0135c1082567bfb96b","userAgent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.5112.81 Electron/20.0.2 Safari/537.36","jsVersion":"10.4.132.20"}}
+2022-08-12T09:37:48.437Z pw:protocol SEND ► {"id":2,"method":"Target.setAutoAttach","params":{"autoAttach":true,"waitForDebuggerOnStart":true,"flatten":true}}
+2022-08-12T09:37:48.438Z pw:protocol ◀ RECV {"id":2,"result":{}}
+2022-08-12T09:37:48.438Z pw:protocol SEND ► {"id":3,"method":"Target.getTargetInfo"}
+2022-08-12T09:37:48.438Z pw:protocol ◀ RECV {"id":3,"result":{"targetInfo":{"targetId":"3776c626-f2c9-4b4b-bee4-828f1689ef62","type":"browser","title":"","url":"","attached":true,"canAccessOpener":false}}}
+2022-08-12T09:37:48.439Z pw:protocol SEND ► {"id":1,"method":"Runtime.enable","params":{}}
+2022-08-12T09:37:48.443Z pw:protocol ◀ RECV {"method":"Runtime.executionContextCreated","params":{"context":{"id":1,"origin":"","name":"/Users/max/development/tmp/electron-quick-start/node_modules/electron/dist/Electron.app/Contents/MacOS/Electron[57182]","uniqueId":"8302083819631864118.-7120418788529574423","auxData":{"isDefault":true}}}}
+2022-08-12T09:37:48.444Z pw:protocol ◀ RECV {"id":1,"result":{}}
+2022-08-12T09:37:48.445Z pw:protocol ◀ RECV {"id":2,"result":{"result":{"type":"object","className":"UtilityScript","description":"UtilityScript","objectId":"-6264366180732152177.1.1"}}}
+2022-08-12T09:37:48.446Z pw:protocol SEND ► {"id":3,"method":"Runtime.callFunctionOn","params":{"functionDeclaration":"(utilityScript, ...args) => utilityScript.evaluate(...args)","objectId":"-6264366180732152177.1.1","arguments":[{"objectId":"-6264366180732152177.1.1"},{"value":false},{"value":false},{"value":"process.mainModule.require('electron')"},{"value":0}],"returnByValue":false,"awaitPromise":true,"userGesture":true}}
+2022-08-12T09:37:48.447Z pw:protocol ◀ RECV {"id":3,"result":{"result":{"type":"object","className":"Object","description":"Object","objectId":"-6264366180732152177.1.2"}}}
+2022-08-12T09:37:48.448Z pw:protocol SEND ► {"id":4,"method":"Runtime.callFunctionOn","params":{"functionDeclaration":"(utilityScript, ...args) => utilityScript.evaluate(...args)","objectId":"-6264366180732152177.1.1","arguments":[{"objectId":"-6264366180732152177.1.1"},{"value":true},{"value":true},{"value":"async ({ app }) => {\n    // This runs in the main Electron process, parameter here is always\n    // the result of the require('electron') in the main app script.\n    return app.getAppPath();\n  }"},{"value":2},{"value":{"h":0}},{"value":{"v":"undefined"}},{"objectId":"-6264366180732152177.1.2"}],"returnByValue":true,"awaitPromise":true,"userGesture":true}}
+2022-08-12T09:37:48.449Z pw:protocol ◀ RECV {"id":4,"result":{"result":{"type":"string","value":"/Users/max/development/tmp/electron-quick-start"}}}
+/Users/max/development/tmp/electron-quick-start
+2022-08-12T09:37:51.508Z pw:protocol SEND ► {"id":5,"method":"Runtime.callFunctionOn","params":{"functionDeclaration":"(utilityScript, ...args) => utilityScript.evaluate(...args)","objectId":"-6264366180732152177.1.1","arguments":[{"objectId":"-6264366180732152177.1.1"},{"value":true},{"value":true},{"value":"({\n        app\n      }) => app.quit()"},{"value":2},{"value":{"h":0}},{"value":{"v":"undefined"}},{"objectId":"-6264366180732152177.1.2"}],"returnByValue":true,"awaitPromise":true,"userGesture":true}}
+2022-08-12T09:37:51.612Z pw:protocol ◀ RECV {"id":5,"result":{"result":{"type":"undefined"}}}
+node:internal/process/promises:265
+            triggerUncaughtException(err, true /* fromPromise */);
+            ^
+
+electronApplication.firstWindow: Electron application closed
+    at /Users/max/development/tmp/electron-quick-start/test.js:16:36

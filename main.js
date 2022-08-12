@@ -1,15 +1,13 @@
+// @ts-check
 // Modules to control application life and create native browser window
-const {app, BrowserWindow} = require('electron')
+const { app, BrowserWindow } = require('electron')
 const path = require('path')
 
-function createWindow() {
+async function createWindow() {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
-    webPreferences: {
-      preload: path.join(__dirname, 'preload.js')
-    },
     show: false,
   })
 
@@ -21,16 +19,13 @@ function createWindow() {
   myCp.on('message', (newUrl) => {
     mainWindow.loadURL(newUrl)
   })
-
-  // Open the DevTools.
-  // mainWindow.webContents.openDevTools()
 }
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.whenReady().then(() => {
-  createWindow()
+  createWindow().catch(e => console.error(e))
 
   app.on('activate', function () {
     // On macOS it's common to re-create a window in the app when the
