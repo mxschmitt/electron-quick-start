@@ -2,18 +2,25 @@
 const {app, BrowserWindow} = require('electron')
 const path = require('path')
 
-function createWindow () {
+function createWindow() {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js')
-    }
+    },
+    show: false,
   })
 
-  // and load the index.html of the app.
-  mainWindow.loadFile('index.html')
+  mainWindow.once('ready-to-show', () => {
+    mainWindow.show();
+  });
+
+  const myCp = require('child_process').fork(path.join(__dirname, 'mycp.js'))
+  myCp.on('message', (newUrl) => {
+    mainWindow.loadURL(newUrl)
+  })
 
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()
